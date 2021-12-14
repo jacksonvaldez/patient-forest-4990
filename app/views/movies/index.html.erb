@@ -1,3 +1,4 @@
+<h3>All Movies</h3>
 <% @movies.each do |movie| %>
   <p><%= link_to "#{movie.title}", "/movies/#{movie.id}"%></p>
 <% end %>

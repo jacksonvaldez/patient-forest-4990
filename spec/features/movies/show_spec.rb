@@ -39,7 +39,6 @@ RSpec.describe 'Movie Show Page' do
   end
 
   it 'displays the average age of the actors as an integer' do
-    save_and_open_page
     expect(page).to have_content('Average Age: 44')
   end
 

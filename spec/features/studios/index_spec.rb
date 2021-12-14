@@ -12,7 +12,6 @@ RSpec.describe 'Studios index page' do
   end
 
   it 'lists all studio names' do
-    save_and_open_page
     expect(page).to have_content('Universal Studios')
     expect(page).to have_content('Marvel Studios')
   end

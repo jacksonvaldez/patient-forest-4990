@@ -28,9 +28,12 @@ RSpec.describe 'Movie Show Page' do
     expect(page).to_not have_content('Super Hero')
   end
 
-  it 'displays the actors in the movie and doesnt display actors not in the movie' do
+  it 'displays the actors in the movie' do
     expect(page).to have_content('Example Name')
     expect(page).to have_content('Sarah Adams')
+  end
+
+  it 'doesnt display actors not in the movie' do
     expect(page).to_not have_content('John Doe')
   end
 
@@ -40,6 +43,28 @@ RSpec.describe 'Movie Show Page' do
 
   it 'displays the average age of the actors as an integer' do
     expect(page).to have_content('Average Age: 44')
+  end
+
+  it 'displays a form to add an actor to the movie' do
+    expect(page).to have_field(:actor_search)
+  end
+
+  it 'takes you to correct path after adding an actor' do
+    fill_in(:actor_search, with: 'John Doe')
+    click_button('Add Actor')
+    expect(current_path).to eq("/movies/#{@movie_1.id}")
+  end
+
+  it 'lists the actor added' do
+    fill_in(:actor_search, with: 'John Doe')
+    click_button('Add Actor')
+    expect(page).to have_content('John Doe')
+  end
+
+  it 'doesnt list an actor added if actor doesnt exist' do
+    fill_in(:actor_search, with: 'BLA BLA BLA')
+    click_button('Add Actor')
+    expect(page).to_not have_content('BLA BLA BLA')
   end
 
 end

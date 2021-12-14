@@ -7,3 +7,9 @@
   <p> - <%= actor.name %></p>
 <% end %>
 <p>Average Age: <%= @average_age %></p>
+
+<%= form_with url: "/movies/#{@movie.id}/new_actor", method: :post, local: true do |form| %>
+  <%= form.text_field :actor_search %>
+
+  <%= form.submit 'Add Actor' %>
+<% end %>
